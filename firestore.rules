@@ -1,0 +1,94 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    function isAdmin() {
+      return request.auth != null
+        && request.auth.uid in ['WQcQKgvJb3Wj1rsP1cWZRsQak8m1'];
+    }
+
+    function validSchema() {
+      let data = request.resource.data;
+      return data.keys().hasOnly([
+          'schemaVersion', 'questions', 'publicFieldIds', 'requiredFieldIds'
+        ])
+        && data.keys().hasAll([
+          'schemaVersion', 'questions', 'publicFieldIds', 'requiredFieldIds'
+        ])
+        && data.schemaVersion is int
+        && data.schemaVersion >= 1
+        && data.questions is list
+        && data.questions.size() >= 1
+        && data.questions.size() <= 20
+        && data.publicFieldIds is list
+        && data.publicFieldIds.size() >= 1
+        && data.publicFieldIds.size() <= 20
+        && data.requiredFieldIds is list
+        && data.requiredFieldIds.size() <= 20
+        && data.publicFieldIds.hasAll(data.requiredFieldIds);
+    }
+
+    function validText(value) {
+      return value is string && value.size() <= 2000;
+    }
+
+    // Rules cannot iterate over a map's values, so validate the bounded list
+    // returned by Map.values() one position at a time. Form schemas cap fields at 20.
+    function validTextValues(values) {
+      return values.size() <= 20
+        && (values.size() < 1 || validText(values[0]))
+        && (values.size() < 2 || validText(values[1]))
+        && (values.size() < 3 || validText(values[2]))
+        && (values.size() < 4 || validText(values[3]))
+        && (values.size() < 5 || validText(values[4]))
+        && (values.size() < 6 || validText(values[5]))
+        && (values.size() < 7 || validText(values[6]))
+        && (values.size() < 8 || validText(values[7]))
+        && (values.size() < 9 || validText(values[8]))
+        && (values.size() < 10 || validText(values[9]))
+        && (values.size() < 11 || validText(values[10]))
+        && (values.size() < 12 || validText(values[11]))
+        && (values.size() < 13 || validText(values[12]))
+        && (values.size() < 14 || validText(values[13]))
+        && (values.size() < 15 || validText(values[14]))
+        && (values.size() < 16 || validText(values[15]))
+        && (values.size() < 17 || validText(values[16]))
+        && (values.size() < 18 || validText(values[17]))
+        && (values.size() < 19 || validText(values[18]))
+        && (values.size() < 20 || validText(values[19]));
+    }
+
+    function validSubmission() {
+      let schemaPath = /databases/$(database)/documents/settings/formSchema;
+      return exists(schemaPath)
+        && request.resource.data.keys().hasOnly([
+          'answers', 'schemaVersion', 'createdAt', 'status'
+        ])
+        && request.resource.data.keys().hasAll([
+          'answers', 'schemaVersion', 'createdAt', 'status'
+        ])
+        && request.resource.data.schemaVersion is int
+        && request.resource.data.schemaVersion == get(schemaPath).data.schemaVersion
+        && request.resource.data.createdAt == request.time
+        && request.resource.data.status == 'new'
+        && request.resource.data.answers is map
+        && request.resource.data.answers.size() <= 20
+        && request.resource.data.answers.keys().hasOnly(get(schemaPath).data.publicFieldIds)
+        && request.resource.data.answers.keys().hasAll(get(schemaPath).data.requiredFieldIds)
+        && validTextValues(request.resource.data.answers.values());
+    }
+
+    match /settings/formSchema {
+      // Visitors need only read the published questions. Only the admin can publish changes.
+      allow get: if true;
+      allow create, update: if isAdmin() && validSchema();
+      allow delete: if isAdmin();
+    }
+
+    match /submissions/{submissionId} {
+      // Visitors can only create bounded answers for currently published questions.
+      allow create: if validSubmission();
+      // Submissions are private to the authorized admin account.
+      allow get, list, update, delete: if isAdmin();
+    }
+  }
+}

@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#173a56">
+  <meta name="description" content="Request a friendly consultation about your credit profile and next steps.">
+  <title>Let's Grow With champa | Credit Consultation</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <script type="module" src="app.js"></script>
+</head>
+<body>
+  <header class="site-header">
+    <a class="brand" href="#top" aria-label="Let's Grow With Mamta home">
+      <span class="brand-mark" aria-hidden="true">G</span>
+      <span>Let's Grow <strong>With ...</strong></span>
+    </a>
+    <a class="header-link" href="#consultation">Request a call <span aria-hidden="true">↗</span></a>
+  </header>
+
+  <main id="top">
+    <section class="hero wrap">
+      <div class="hero-copy">
+        <p class="eyebrow"><span class="eyebrow-dot"></span> A clearer path forward</p>
+        <h1>Make your next<br><em>money move</em> with confidence.</h1>
+        <p class="hero-lede">Get a friendly, one-to-one conversation about your credit profile and the steps that may help you move forward.</p>
+        <a class="button button-primary" href="#consultation">Request a consultation <span aria-hidden="true">→</span></a>
+        <div class="trust-note"><span class="trust-icon" aria-hidden="true">✓</span> Your details are shared only with our consultation team.</div>
+      </div>
+      <div class="hero-art" aria-label="Illustration of a growing financial journey" role="img">
+        <div class="art-sun"></div><div class="art-line art-line-one"></div><div class="art-line art-line-two"></div>
+        <div class="art-card"><span class="art-card-label">YOUR NEXT STEP</span><strong>Progress, at your pace.</strong><span class="art-card-icon">↗</span></div>
+        <div class="art-leaf leaf-one"></div><div class="art-leaf leaf-two"></div><div class="art-leaf leaf-three"></div>
+        <span class="art-caption">Small steps can grow into big change.</span>
+      </div>
+    </section>
+
+    <section class="intro-band">
+      <div class="wrap intro-inner">
+        <div><p class="eyebrow">A conversation, not a commitment</p><h2>Understand where you stand.<br>Decide what comes next.</h2></div>
+        <p>Credit reports and scores can feel confusing. Share a little about what you need, and we'll get in touch to understand your goals and discuss possible next steps.</p>
+      </div>
+    </section>
+
+    <section class="form-section wrap" id="consultation">
+      <div class="form-intro">
+        <p class="eyebrow">Let's talk</p>
+        <h2>Request your<br>consultation</h2>
+        <p>Fill in the form and Mamta's team will reach out using your preferred contact details.</p>
+        <div class="contact-promise"><span aria-hidden="true">✳</span><span><strong>Personal and simple</strong><br>Tell us what you need help with. We'll take it from there.</span></div>
+      </div>
+      <div class="form-card">
+        <div class="form-card-head"><span class="step-badge">01</span><div><h3>Your details</h3><p>Fields marked with * are required.</p></div></div>
+        <div id="form-notice" class="notice" role="status" aria-live="polite" hidden></div>
+        <form id="consultation-form" novalidate>
+          <div id="question-fields" class="question-fields"></div>
+          <button id="submit-button" class="button button-dark button-full" type="submit">Send consultation request <span aria-hidden="true">→</span></button>
+          <p class="privacy-note">By submitting, you agree that we may contact you about this request.</p>
+        </form>
+        <div id="success-panel" class="success-panel" role="status" hidden>
+          <div class="success-check" aria-hidden="true">✓</div><h3>Thank you for reaching out.</h3>
+          <p>Your request has been received. We'll be in touch soon.</p>
+          <button id="another-request" class="text-button" type="button">Send another request</button>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer"><div class="wrap footer-inner"><a class="brand brand-footer" href="#top"><span class="brand-mark" aria-hidden="true">G</span><span>Let's Grow <strong>With Mamta</strong></span></a><span>Thoughtful guidance for your financial journey.</span><a href="admin.html">Admin</a></div></footer>
+</body>
+</html>

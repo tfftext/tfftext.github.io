@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#173a56">
+  <title>Admin | Let's Grow With Mamta</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="admin.css">
+  <script type="module" src="admin.js"></script>
+</head>
+<body>
+  <header class="admin-topbar">
+    <a class="admin-brand" href="index.html"><span class="brand-mark">G</span><span>Let's Grow <strong>With Mamta</strong></span></a>
+    <a href="index.html" class="back-link">View public form ↗</a>
+  </header>
+  <main class="admin-main">
+    <section id="login-panel" class="login-panel">
+      <p class="eyebrow">Secure workspace</p>
+      <h1>Admin sign in</h1>
+      <p class="panel-lede">Sign in with the Firebase Authentication account authorized in your Firestore rules.</p>
+      <div id="login-notice" class="admin-notice" role="status" aria-live="polite" hidden></div>
+      <form id="login-form">
+        <label for="admin-email">Email address</label>
+        <input id="admin-email" type="email" autocomplete="username" required>
+        <label for="admin-password">Password</label>
+        <input id="admin-password" type="password" autocomplete="current-password" required>
+        <button class="admin-button primary-button" type="submit">Sign in <span>→</span></button>
+      </form>
+      <p class="config-hint">Set your Firebase web-app values in <code>firebase-config.js</code>. Admin access is enforced by Firestore rules.</p>
+    </section>
+
+    <section id="dashboard" hidden>
+      <div class="dashboard-heading">
+        <div><p class="eyebrow">Admin workspace</p><h1>Consultation dashboard</h1><p class="signed-in">Signed in as <strong id="signed-in-email"></strong></p></div>
+        <button id="sign-out" class="admin-button secondary-button" type="button">Sign out</button>
+      </div>
+      <div id="dashboard-notice" class="admin-notice" role="status" aria-live="polite" hidden></div>
+
+      <section class="panel question-panel">
+        <div class="panel-heading"><div><p class="eyebrow">Public form</p><h2>Manage questions</h2><p>Changes are saved to Firestore and appear on open public forms as soon as the update arrives.</p></div><span class="panel-icon" aria-hidden="true">✳</span></div>
+        <div id="schema-status" class="schema-status" role="status" aria-live="polite"></div>
+        <button id="publish-defaults" class="admin-button primary-button publish-button" type="button" hidden>Publish default questions <span>→</span></button>
+        <div class="question-manager">
+          <div class="question-list-column"><h3>Current questions <span id="question-count"></span></h3><div id="question-list" class="question-list"></div></div>
+          <div class="editor-column">
+            <h3 id="editor-title">Add a question</h3>
+            <form id="question-form">
+              <input id="question-id" type="hidden">
+              <label for="question-label">Question text</label>
+              <input id="question-label" type="text" maxlength="120" required placeholder="For example, What service do you need?">
+              <label for="question-type">Answer type</label>
+              <select id="question-type">
+                <option value="short">Short text</option><option value="long">Long text</option><option value="email">Email</option><option value="phone">Phone number</option><option value="select">Dropdown</option>
+              </select>
+              <div id="options-group" hidden><label for="question-options">Dropdown options <span class="label-help">One option per line</span></label><textarea id="question-options" rows="4" placeholder="Option one&#10;Option two"></textarea></div>
+              <label class="check-row"><input id="question-required" type="checkbox"><span>Require an answer</span></label>
+              <label class="check-row"><input id="question-enabled" type="checkbox" checked><span>Show on public form</span></label>
+              <div class="editor-actions"><button class="admin-button primary-button" type="submit" id="save-question">Add question <span>→</span></button><button class="admin-button secondary-button" type="button" id="cancel-edit" hidden>Cancel edit</button></div>
+            </form>
+          </div>
+        </div>
+      </section>
+
+      <section class="panel submissions-panel">
+        <div class="panel-heading submissions-heading"><div><p class="eyebrow">Incoming requests</p><h2>Submissions</h2><p id="submission-count">Loading submissions…</p></div><button id="export-csv" class="admin-button secondary-button" type="button">Export CSV <span>↓</span></button></div>
+        <label class="search-label" for="submission-search">Search submissions</label>
+        <input id="submission-search" class="search-input" type="search" placeholder="Search answers, status, or date">
+        <div class="table-scroll"><table><thead><tr><th>Received</th><th>Answers</th><th>Status</th><th>Actions</th></tr></thead><tbody id="submission-rows"><tr><td colspan="4" class="empty-row">Loading submissions…</td></tr></tbody></table></div>
+      </section>
+    </section>
+  </main>
+  <footer class="admin-footer"><a href="index.html">← Back to public website</a><span>Let's Grow With Mamta</span></footer>
+</body>
+</html>
