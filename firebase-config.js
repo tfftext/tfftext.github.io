@@ -7,7 +7,7 @@ export const firebaseConfig = {
   storageBucket: "freepage11.firebasestorage.app",
   messagingSenderId: "981312859235",
   appId: "1:981312859235:web:8046579152409bd6a3dc56"
-};
+
 };
 
 export const DEFAULT_SCHEMA = {
