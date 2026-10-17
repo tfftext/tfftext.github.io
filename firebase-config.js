@@ -1,8 +1,8 @@
 // Firebase web-app configuration is public by design. It is not an admin secret.
 // Replace these sample values with the settings from Firebase Console > Project settings.
 export const firebaseConfig = {
-  apiKey: "YOUR_API_KEY",
-  authDomain: "AIzaSyDUeCxyThMv9IcznLMv-1NRwrU2dstwOVE",
+  apiKey: "AIzaSyDUeCxyThMv9IcznLMv-1NRwrU2dstwOVE",
+  authDomain: "freepage11.firebaseapp.com"1d,
   projectId: "freepage11",
   appId: "1:981312859235:web:8046579152409bd6a3dc56"
 };
