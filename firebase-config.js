@@ -2,9 +2,12 @@
 // Replace these sample values with the settings from Firebase Console > Project settings.
 export const firebaseConfig = {
   apiKey: "AIzaSyDUeCxyThMv9IcznLMv-1NRwrU2dstwOVE",
-  authDomain: "freepage11.firebaseapp.com"1d,
+  authDomain: "freepage11.firebaseapp.com",
   projectId: "freepage11",
+  storageBucket: "freepage11.firebasestorage.app",
+  messagingSenderId: "981312859235",
   appId: "1:981312859235:web:8046579152409bd6a3dc56"
+};
 };
 
 export const DEFAULT_SCHEMA = {
